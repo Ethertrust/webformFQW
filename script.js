@@ -8,6 +8,16 @@ $(document).ready(function(){
         $('#curators').prepend($('#webform-component-curator').clone());
     });
 
+    $( "#edit-submitted-VKR" ).change(function() {
+        $('#error4').css("display", "none");
+        $("#edit-submitted-VKR").css("border",  "1px solid transparent");
+    });
+
+    $( "#edit-submitted-institute" ).change(function() {
+        $('#error7').css("display", "none");
+        $("#edit-submitted-institute").css("border",  "1px solid transparent");
+    });
+
     $(document).on("modify", ":input", function(event, data)
     {
         if(event.target.id=="edit-submitted-vash-pdf")
@@ -45,14 +55,10 @@ $(document).ready(function(){
                     $('#error2').css("display", "none");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "none");
-                if(event.target.id=="edit-submitted-VKR")
-                    $('#error4').css("display", "none");
                 if(event.target.id=="edit-submitted-curator")
                     $('#error5').css("display", "none");
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "none");
-                if(event.target.id=="edit-submitted-institute")
-                    $('#error7').css("display", "none");
                 if(event.target.id=="edit-submitted-pages")
                     $('#error8').css("display", "none");
                 if(event.target.id=="edit-submitted-pdf")
@@ -67,14 +73,10 @@ $(document).ready(function(){
                     $('#error2').css("display", "block");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "block");
-                if(event.target.id=="edit-submitted-VKR")
-                    $('#error4').css("display", "block");
                 if(event.target.id=="edit-submitted-curator")
                     $('#error5').css("display", "block");
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "block");
-                if(event.target.id=="edit-submitted-institute")
-                    $('#error7').css("display", "block");
                 if(event.target.id=="edit-submitted-pages")
                     $('#error8').css("display", "block");
                 if(event.target.id=="edit-submitted-pdf")
