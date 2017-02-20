@@ -22,11 +22,17 @@ $(document).ready(function(){
     {
         if(event.target.id=="edit-submitted-vash-pdf")
         {
-            if(valid($.trim(data.currentValue),true))
+            if(valid($.trim(data.currentValue)))
             {
                 $('#notok2').css("display", "none");
                 $('#ok2').css("display", "block");
                 $(this).css("border", "1px solid transparent");
+            }
+            else
+            {
+                $('#ok2').css("display", "none");
+                $('#notok2').css("display", "block");
+                $(this).css("border", "1px solid #d11313");
             }
         }
 
@@ -147,7 +153,8 @@ $(document).ready(function(){
             allright = false;
         }
         if (!valid(submittedPDF)) {
-            $('#error9').css("display", "block");
+            $('#ok2').css("display", "none");
+            $('#notok2').css("display", "block");
             $('#edit-submitted-pdf').css("border", "1px solid #d11313");
             allright = false;
         }
