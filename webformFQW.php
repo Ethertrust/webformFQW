@@ -12,10 +12,10 @@ $array = require_once('config.php');
           rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="formcheck.php" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+<form action="formcheck.php" class="webform-client-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
     <div class="form-item webform-component webform-component-textfield" id="webform-component-title">
         <label for="edit-submitted-title">Заглавие работы <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-        <input type="text" id="edit-submitted-title" name="submittedtitle" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">
+        <input type="text" id="edit-submitted-title" name="submittedtitle" value="" size="50" maxlength="128" class="form-text required" style="width:213px;">
         <label for="edit-submitted-title" id="error1" class="error" style="display: none;">заполните, пожалуйста</label>
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-fio">
@@ -28,9 +28,9 @@ $array = require_once('config.php');
         <input type="date" id="edit-submitted-year" name="submittedyear" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">
         <label for="edit-submitted-year" id="error3" class="error" style="display: none;">заполните, пожалуйста</label>
     </div>
-    <div class="form-item webform-component webform-component-selectfield" id="webform-component-VKR">
+    <div class="form-item webform-component webform-component-textfield" id="webform-component-VKR">
         <label for="edit-submitted-VKR">Форма ВКР <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-        <select name="VKR[]" id="#edit-submitted-VKR">
+        <select name="VKR[]" id="edit-submitted-VKR">
             <option selected="selected" disabled>Форма ВКР </option>
             <?php
             while ($fruit_name = current($array["work_type"])) {
@@ -54,9 +54,9 @@ $array = require_once('config.php');
         <input type="text" id="edit-submitted-kod" name="submittedkod" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">
         <label for="edit-submitted-kod" id="error6" class="error" style="display: none;">заполните, пожалуйста</label>
     </div>
-    <div class="form-item webform-component webform-component-selectfield" id="webform-component-institutes">
+    <div class="form-item webform-component webform-component-textfield" id="webform-component-institutes">
         <label for="edit-submitted-institutes">Выберите институт <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-        <select name="institutes[]" id="#edit-submitted-institute">
+        <select name="institutes[]" id="edit-submitted-institute">
             <option selected="selected" disabled>Выберите институт</option>
             <?php
             while ($fruit_name = current($array["institute"])) {

@@ -8,12 +8,88 @@ $(document).ready(function(){
         $('#curators').prepend($('#webform-component-curator').clone());
     });
 
+    $(document).on("modify", ":input", function(event, data)
+    {
+        if(event.target.id=="edit-submitted-vash-pdf")
+        {
+            if(valid($.trim(data.currentValue),true))
+            {
+                $('#notok2').css("display", "none");
+                $('#ok2').css("display", "block");
+                $(this).css("border", "1px solid transparent");
+            }
+        }
+
+        if(event.target.id=="edit-submitted-vash-email")
+        {
+            if(valid($.trim(data.currentValue),true))
+            {
+                $('#notok1').css("display", "none");
+                $('#ok1').css("display", "block");
+                $(this).css("border", "1px solid transparent");
+            }
+            else
+            {
+                $('#ok1').css("display", "none");
+                $('#notok1').css("display", "block");
+                $(this).css("border", "1px solid #d11313");
+            }
+        }
+        else
+        {
+            if(valid($.trim(data.currentValue)))
+            {
+                if(event.target.id=="edit-submitted-title")
+                    $('#error1').css("display", "none");
+                if(event.target.id=="edit-submitted-fio")
+                    $('#error2').css("display", "none");
+                if(event.target.id=="edit-submitted-year")
+                    $('#error3').css("display", "none");
+                if(event.target.id=="edit-submitted-VKR")
+                    $('#error4').css("display", "none");
+                if(event.target.id=="edit-submitted-curator")
+                    $('#error5').css("display", "none");
+                if(event.target.id=="edit-submitted-Kod")
+                    $('#error6').css("display", "none");
+                if(event.target.id=="edit-submitted-institute")
+                    $('#error7').css("display", "none");
+                if(event.target.id=="edit-submitted-pages")
+                    $('#error8').css("display", "none");
+                if(event.target.id=="edit-submitted-pdf")
+                    $('#error9').css("display", "none");
+                $(this).css("border",  "1px solid transparent");
+            }
+            else
+            {
+                if(event.target.id=="edit-submitted-title")
+                    $('#error1').css("display", "block");
+                if(event.target.id=="edit-submitted-fio")
+                    $('#error2').css("display", "block");
+                if(event.target.id=="edit-submitted-year")
+                    $('#error3').css("display", "block");
+                if(event.target.id=="edit-submitted-VKR")
+                    $('#error4').css("display", "block");
+                if(event.target.id=="edit-submitted-curator")
+                    $('#error5').css("display", "block");
+                if(event.target.id=="edit-submitted-Kod")
+                    $('#error6').css("display", "block");
+                if(event.target.id=="edit-submitted-institute")
+                    $('#error7').css("display", "block");
+                if(event.target.id=="edit-submitted-pages")
+                    $('#error8').css("display", "block");
+                if(event.target.id=="edit-submitted-pdf")
+                    $('#error9').css("display", "block");
+                $(this).css("border", "1px solid #d11313");
+            }
+        }
+    });
+
     $('.webform-client-form').on('submit', function(event) {
         event.preventDefault();
         var title = $.trim($('#edit-submitted-title').val());
         var submittedfio = $.trim($('#edit-submitted-fio').val());
         var submittedyear = $.trim($('#edit-submitted-year').val());
-        var submittedstudVKR = $.trim($('#edit-submitted-VKR').val());
+        var submittedVKR = $.trim($('#edit-submitted-VKR').val());
         var submittedstudCurator = findMultiID('edit-submitted-curator');
         var submittedstudKod = $.trim($('#edit-submitted-kod').val());
         var submittedstudInstitute = $.trim($('#edit-submitted-institute').val());
@@ -32,30 +108,51 @@ $(document).ready(function(){
             $('#edit-submitted-fio').css("border", "1px solid #d11313");
             allright = false;
         }
+        if (!valid(submittedyear)) {
+            $('#error3').css("display", "block");
+            $('#edit-submitted-year').css("border", "1px solid #d11313");
+            allright = false;
+        }
+        if (!valid(submittedVKR)) {
+            $('#error4').css("display", "block");
+            $('#edit-submitted-VKR').css("border", "1px solid #d11313");
+            allright = false;
+        }
+        if (!valid(submittedstudCurator)) {
+            $('#error5').css("display", "block");
+            $('#edit-submitted-curator').css("border", "1px solid #d11313");
+            allright = false;
+        }
+        if (!valid(submittedstudKod)) {
+            $('#error6').css("display", "block");
+            $('#edit-submitted-kod').css("border", "1px solid #d11313");
+            allright = false;
+        }
+        if (!valid(submittedstudInstitute)) {
+            $('#error7').css("display", "block");
+            $('#edit-submitted-institute').css("border", "1px solid #d11313");
+            allright = false;
+        }
+        if (!valid(submittedstudPages)) {
+            $('#error8').css("display", "block");
+            $('#edit-submitted-pages').css("border", "1px solid #d11313");
+            allright = false;
+        }
         if (!valid(submittedvash_email, true)) {
             $('#ok1').css("display", "none");
             $('#notok1').css("display", "block");
             $('#edit-submitted-vash-email').css("border", "1px solid #d11313");
             allright = false;
         }
-        if (!valid(submittedyear)) {
-            $('#error3').css("display", "block");
-            $('#edit-submitted-year').css("border", "1px solid #d11313");
-            allright = false;
-        }
-        if (!valid(submittedstudwork)) {
-            $('#error4').css("display", "block");
-            $('#edit-submitted-studwork').css("border", "1px solid #d11313");
-            allright = false;
-        }
-        if (!valid(submittedbirthdate)) {
-            $('#error5').css("display", "block");
-            $('#edit-submitted-birthdate').css("border", "1px solid #d11313");
+        if (!valid(submittedPDF)) {
+            $('#error9').css("display", "block");
+            $('#edit-submitted-pdf').css("border", "1px solid #d11313");
             allright = false;
         }
 
         if (!allright)
             return;
+        return;
     });
  }
 )
