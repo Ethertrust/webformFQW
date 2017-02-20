@@ -10,9 +10,9 @@ $(document).ready(function(){
 
     $('.webform-client-form').on('submit', function(event) {
         event.preventDefault();
-        var topic = $.trim($('#edit-submitted-title').val());
+        var title = $.trim($('#edit-submitted-title').val());
         var submittedfio = $.trim($('#edit-submitted-fio').val());
-        var submittedstudwork = $.trim($('#edit-submitted-year').val());
+        var submittedyear = $.trim($('#edit-submitted-year').val());
         var submittedstudVKR = $.trim($('#edit-submitted-VKR').val());
         var submittedstudCurator = findMultiID('edit-submitted-curator');
         var submittedstudKod = $.trim($('#edit-submitted-kod').val());
@@ -21,11 +21,14 @@ $(document).ready(function(){
         var submittedvash_email = $.trim($('#edit-submitted-vash-email').val());
         var submittedPDF = $.trim($('#fileToUpload').val());
         var allright = true;
-        if (topic != "Запись on-line") {
+
+        if (!valid(title)) {
+            $('#error1').css("display", "block");
+            $('#edit-submitted-title').css("border", "1px solid #d11313");
             allright = false;
         }
         if (!valid(submittedfio)) {
-            $('#error1').css("display", "block");
+            $('#error2').css("display", "block");
             $('#edit-submitted-fio').css("border", "1px solid #d11313");
             allright = false;
         }
@@ -35,9 +38,9 @@ $(document).ready(function(){
             $('#edit-submitted-vash-email').css("border", "1px solid #d11313");
             allright = false;
         }
-        if (!valid(submittedpn)) {
-            $('#error2').css("display", "block");
-            $('#edit-submitted-pn').css("border", "1px solid #d11313");
+        if (!valid(submittedyear)) {
+            $('#error3').css("display", "block");
+            $('#edit-submitted-year').css("border", "1px solid #d11313");
             allright = false;
         }
         if (!valid(submittedstudwork)) {
