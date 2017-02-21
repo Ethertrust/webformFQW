@@ -2,14 +2,14 @@
  * Created by shvedov_es on 15.02.2017.
  */
 
-var id = 8
+var id = 1;
 
 $(document).ready(function(){
     //$('#webform-component-curator').clone()
     $( "#cboxCuratorAdd" ).click(function() {
         $('#curators').prepend("<div class='form-item webform-component webform-component-textfield' id='webform-component-curator'>");
         id = id+1;
-        var textid = "edit-submitted-curator" + id.toString();
+        var textid = id.toString();
         $('#webform-component-curator').append("<input type='text' id='" + textid + "' name='submittedcurator' value='' size='60' maxlength='128' class='form-text required' style='width:213px;'>");
         $('#webform-component-curator').prepend('<label for="' + textid + '">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>');
         $('#webform-component-curator').append('<label for="' + textid + '" id="error' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
@@ -68,8 +68,10 @@ $(document).ready(function(){
                     $('#error2').css("display", "none");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "none");
-                if(event.target.id=="edit-submitted-curator")
-                    $('#error5').css("display", "none");
+                if(event.target.id=="1")
+                    $('#error1').css("display", "none");
+                if(event.target.id==id.toString())
+                    $('#error1').css("display", "none");
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "none");
                 if(event.target.id=="edit-submitted-pages")
@@ -84,8 +86,10 @@ $(document).ready(function(){
                     $('#error2').css("display", "block");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "block");
-                if(event.target.id=="edit-submitted-curator")
-                    $('#error5').css("display", "block");
+                if(event.target.id=="1")
+                    $('#error1').css("display", "block");
+                if(event.target.id=="1")
+                    $('#error1').css("display", "block");
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "block");
                 if(event.target.id=="edit-submitted-pages")
@@ -102,12 +106,12 @@ $(document).ready(function(){
         var submittedyear = $.trim($('#edit-submitted-year').val());
         var submittedVKR = $.trim($('#edit-submitted-VKR').val());
         var submittedstudCurator = [];
-            submittedstudCurator.push($.trim($('#edit-submitted-curator').val()));
-        var minid = 8;
+            submittedstudCurator.push($.trim($('#1').val()));
+        var minid = 1;
         var maxid = id;
         while(minid != maxid) {
             minid += 1;
-            textid = "#edit-submitted-curator" + minid.toString();
+            textid = "#" + minid.toString();
             submittedstudCurator.push($.trim($(textid).val()));
         }
         var submittedstudKod = $.trim($('#edit-submitted-kod').val());
@@ -137,24 +141,16 @@ $(document).ready(function(){
             $('#edit-submitted-VKR').css("border", "1px solid #d11313");
             allright = false;
         }
+        var curatorfound = false;
         submittedstudCurator.forEach(function(item, i, submittedstudCurator){
            if(valid(item)){
-              return;
+              curatorfound = true;
            }
         });
-        if (!valid(submittedstudCurator[0])) {
-            $('#error5').css("display", "block");
-            $('#edit-submitted-curator').css("border", "1px solid #d11313");
+        if (!curatorfound) {
+            $('#error1').css("display", "block");
+            $('#1').css("border", "1px solid #d11313");
             allright = false;
-        }
-        var minid = 8;
-        while(minid != maxid) {
-            minid += 1;
-            if (!valid(submittedstudCurator[minid-8])) {
-                $('#error' + minid.toString()).css("display", "block");
-                $('#edit-submitted-curator' + minid.toString()).css("border", "1px solid #d11313");
-                allright = false;
-            }
         }
         if (!valid(submittedstudKod)) {
             $('#error6').css("display", "block");
@@ -190,17 +186,6 @@ $(document).ready(function(){
     });
  }
 )
-
-function findMultiID(id) {
-    var results = [];
-    var children = $("div").get(0).children;
-    for (var i = 0; i < children.length; i++) {
-        if (children[i].id == id) {
-            results.push(children[i].val());
-        }
-    }
-    return(results);
-}
 
 //text - string value, ismail - bool value and is false by default
 function valid(text,ismail)
