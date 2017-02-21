@@ -2,10 +2,17 @@
  * Created by shvedov_es on 15.02.2017.
  */
 
-$(document).ready(function(){
+var id = 8
 
+$(document).ready(function(){
+    //$('#webform-component-curator').clone()
     $( "#cboxCuratorAdd" ).click(function() {
-        $('#curators').prepend($('#webform-component-curator').clone());
+        $('#curators').prepend("<div class='form-item webform-component webform-component-textfield' id='webform-component-curator'>");
+        id = id+1;
+        var textid = "edit-submitted-curator" + id.toString();
+        $('#webform-component-curator').append("<input type='text' id='" + textid + "' name='submittedcurator' value='' size='60' maxlength='128' class='form-text required' style='width:213px;'>");
+        $('#webform-component-curator').prepend('<label for="' + textid + '">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>');
+        $('#webform-component-curator').append('<label for="' + textid + '" id="error' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
     });
 
     $( "#edit-submitted-VKR" ).change(function() {
@@ -67,8 +74,6 @@ $(document).ready(function(){
                     $('#error6').css("display", "none");
                 if(event.target.id=="edit-submitted-pages")
                     $('#error8').css("display", "none");
-                if(event.target.id=="edit-submitted-pdf")
-                    $('#error9').css("display", "none");
                 $(this).css("border",  "1px solid transparent");
             }
             else
@@ -85,8 +90,6 @@ $(document).ready(function(){
                     $('#error6').css("display", "block");
                 if(event.target.id=="edit-submitted-pages")
                     $('#error8').css("display", "block");
-                if(event.target.id=="edit-submitted-pdf")
-                    $('#error9').css("display", "block");
                 $(this).css("border", "1px solid #d11313");
             }
         }
@@ -98,12 +101,20 @@ $(document).ready(function(){
         var submittedfio = $.trim($('#edit-submitted-fio').val());
         var submittedyear = $.trim($('#edit-submitted-year').val());
         var submittedVKR = $.trim($('#edit-submitted-VKR').val());
-        var submittedstudCurator = findMultiID('edit-submitted-curator');
+        var submittedstudCurator = [];
+            submittedstudCurator.push($.trim($('#edit-submitted-curator').val()));
+        var minid = 8;
+        var maxid = id;
+        while(minid != maxid) {
+            minid += 1;
+            textid = "#edit-submitted-curator" + minid.toString();
+            submittedstudCurator.push($.trim($(textid).val()));
+        }
         var submittedstudKod = $.trim($('#edit-submitted-kod').val());
         var submittedstudInstitute = $.trim($('#edit-submitted-institute').val());
         var submittedstudPages = $.trim($('#edit-submitted-pages').val());
         var submittedvash_email = $.trim($('#edit-submitted-vash-email').val());
-        var submittedPDF = $.trim($('#fileToUpload').val());
+        var submittedPDF = $.trim($('#edit-submitted-vash-pdf').val());
         var allright = true;
 
         if (!valid(title)) {
@@ -126,10 +137,24 @@ $(document).ready(function(){
             $('#edit-submitted-VKR').css("border", "1px solid #d11313");
             allright = false;
         }
-        if (!valid(submittedstudCurator)) {
+        submittedstudCurator.forEach(function(item, i, submittedstudCurator){
+           if(valid(item)){
+              return;
+           }
+        });
+        if (!valid(submittedstudCurator[0])) {
             $('#error5').css("display", "block");
             $('#edit-submitted-curator').css("border", "1px solid #d11313");
             allright = false;
+        }
+        var minid = 8;
+        while(minid != maxid) {
+            minid += 1;
+            if (!valid(submittedstudCurator[minid-8])) {
+                $('#error' + minid.toString()).css("display", "block");
+                $('#edit-submitted-curator' + minid.toString()).css("border", "1px solid #d11313");
+                allright = false;
+            }
         }
         if (!valid(submittedstudKod)) {
             $('#error6').css("display", "block");
@@ -155,7 +180,7 @@ $(document).ready(function(){
         if (!valid(submittedPDF)) {
             $('#ok2').css("display", "none");
             $('#notok2').css("display", "block");
-            $('#edit-submitted-pdf').css("border", "1px solid #d11313");
+            $('#edit-submitted-vash-pdf').css("border", "1px solid #d11313");
             allright = false;
         }
 

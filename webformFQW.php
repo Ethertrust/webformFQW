@@ -80,7 +80,7 @@ $array = require_once('config.php');
     </div>
     <div class="form-item webform-component webform-component-email" id="webform-component-vash-pdf">
         <label for="edit-submitted-vash-pdf">Присоединить текст работы (формат PDF) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-        <input type="file" name="fileToUpload" id="fileToUpload" accept=".pdf">
+        <input type="file" name="fileToUpload" id="edit-submitted-vash-pdf" accept=".pdf">
         <img id="ok2" src="images/ok.jpg" alt="ok" style="display:none;">
         <img id="notok2" src="images/notok.jpg" alt="error" style="display:none;">
     </div>
