@@ -68,6 +68,11 @@ $(document).ready(function(){
                     $('#error2').css("display", "none");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "none");
+                var i =1;
+                while(i!=id){
+                    if(event.target.id == i.toString())
+                        $('#error' + i.toString()).css("display", "none");
+                }
                 if(event.target.id=="1")
                     $('#error1').css("display", "none");
                 if(event.target.id==id.toString())
