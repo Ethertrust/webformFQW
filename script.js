@@ -199,7 +199,38 @@ $(document).ready(function(){
 
         if (!allright)
             return;
-        return;
+
+        $('.webform-client-form').toggle();
+        $('.close_popup').toggle();
+        $('#webform').append($('<span id="sending1" style="vertical-align:middle;">').html("Письмо отправляется..."));
+        $('#webform').append($('<img id="sending" src="../images/sending.gif" style="vertical-align:middle;" alt="error" style="display:none;">'));
+
+        $.ajax({
+            method: 'post',
+            url: 'action.php',
+            data: {
+                topic: topic,
+                submittedfio: submittedfio,
+                submittedvash_email: submittedvash_email,
+                submittedpn: submittedpn,
+                submittedldn: submittedldn
+            },
+            cache: false
+        }).done(function (data) {
+            console.log(data);
+            $('#sending1').toggle();
+            $('#sending').toggle();
+            if (data == "mail sent")
+                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
+            else
+                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
+            $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
+            $('#close_popup').on("click", function(event)
+            {
+                event.preventDefault();
+                history.back();
+            });
+        });
     });
  }
 )
