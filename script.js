@@ -12,7 +12,7 @@ $(document).ready(function(){
         var textid = id.toString();
         $('#webform-component-curator').append("<input type='text' id='" + textid + "' name='submittedcurator' value='' size='60' maxlength='128' class='form-text required' style='width:213px;'>");
         $('#webform-component-curator').prepend('<label for="' + textid + '">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>');
-        $('#webform-component-curator').append('<label for="' + textid + '" id="error' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
+        $('#webform-component-curator').append('<label for="' + textid + '" id="error-' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
     });
 
     $( "#edit-submitted-VKR" ).change(function() {
@@ -68,15 +68,18 @@ $(document).ready(function(){
                     $('#error2').css("display", "none");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "none");
-                var i =1;
-                while(i!=id){
-                    if(event.target.id == i.toString())
-                        $('#error' + i.toString()).css("display", "none");
+                var i = 1;
+                while(i<=id){
+                    if(event.target.id == i.toString()) {
+                        var c =1;
+                        while(c<=id) {
+                            $('#error-' + c.toString()).css("display", "none");
+                            $('#' + c.toString()).css("border", "1px solid transparent");
+                            c++;
+                        }
+                    }
+                    i++;
                 }
-                if(event.target.id=="1")
-                    $('#error1').css("display", "none");
-                if(event.target.id==id.toString())
-                    $('#error1').css("display", "none");
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "none");
                 if(event.target.id=="edit-submitted-pages")
@@ -91,10 +94,19 @@ $(document).ready(function(){
                     $('#error2').css("display", "block");
                 if(event.target.id=="edit-submitted-year")
                     $('#error3').css("display", "block");
-                if(event.target.id=="1")
-                    $('#error1').css("display", "block");
-                if(event.target.id=="1")
-                    $('#error1').css("display", "block");
+                var i =1;
+                while(i<=id){
+                    if(event.target.id == i.toString()) {
+                        var c =1;
+                        while(c<=id) {
+                            $('#error-' + c.toString()).css("display", "none");
+                            $('#' + c.toString()).css("border", "1px solid transparent");
+                            c++;
+                        }
+                        $('#error-' + i.toString()).css("display", "block");
+                    }
+                    i++;
+                }
                 if(event.target.id=="edit-submitted-Kod")
                     $('#error6').css("display", "block");
                 if(event.target.id=="edit-submitted-pages")
@@ -153,7 +165,7 @@ $(document).ready(function(){
            }
         });
         if (!curatorfound) {
-            $('#error1').css("display", "block");
+            $('#error-1').css("display", "block");
             $('#1').css("border", "1px solid #d11313");
             allright = false;
         }

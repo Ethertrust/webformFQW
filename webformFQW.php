@@ -45,9 +45,9 @@ $array = require_once('config.php');
         <div class="form-item webform-component webform-component-textfield" id="webform-component-curator">
             <label for="1">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
             <input type="text" id="1" name="submittedcurator" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">
-            <label for="1" id="error1" class="error" style="display: none;">заполните, пожалуйста</label>
+            <label for="1" id="error-1" class="error" style="display: none;">заполните, пожалуйста</label>
         </div>
-        <button type="button" id="cboxCuratorAdd">Добавить руководителя</button>
+        <button type="button" id="cboxCuratorAdd">+ Добавить руководителя</button>
     </div>
     <div class="form-item webform-component webform-component-textfield" id="webform-component-kod">
         <label for="edit-submitted-kod">ФИО <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
