@@ -203,11 +203,11 @@ $(document).ready(function(){
         $('.webform-client-form').toggle();
         $('.close_popup').toggle();
         $('#webform').append($('<span id="sending1" style="vertical-align:middle;">').html("Письмо отправляется..."));
-        $('#webform').append($('<img id="sending" src="../images/sending.gif" style="vertical-align:middle;" alt="error" style="display:none;">'));
+        $('#webform').append($('<img id="sending" src="images/sending.gif" style="vertical-align:middle;" alt="error" style="display:none;">'));
 
         $.ajax({
             method: 'post',
-            url: 'action.php',
+            url: 'formcheck.php',
             data: {
                 topic: topic,
                 submittedfio: submittedfio,
