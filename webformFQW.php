@@ -44,11 +44,11 @@ $array = require_once('config.php');
                             </div>
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-VKR">
                                 <label for="edit-submitted-VKR">Форма ВКР <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <select name="VKR[]" id="edit-submitted-VKR">
+                                <select name="VKR[]" id="edit-submitted-VKR" class="form-text required">
                                     <option selected="selected" disabled>Форма ВКР </option>
                                     <?php
-                                    while ($fruit_name = current($array["work_type"])) {
-                                        echo '<option>'.htmlspecialchars($fruit_name).'</option>';
+                                    while ($work_type = current($array["work_type"])) {
+                                        echo '<option>'.htmlspecialchars($work_type).'</option>';
                                         next($array["work_type"]);
                                     }
                                     ?>
@@ -63,23 +63,34 @@ $array = require_once('config.php');
                                 </div>
                                 <button type="button" id="cboxCuratorAdd">+ Добавить руководителя</button>
                             </div>
-                            <div class="form-item webform-component webform-component-textfield" id="webform-component-kod">
-                                <label for="edit-submitted-kod">ФИО <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <input type="text" id="edit-submitted-kod" name="submittedkod" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">
-                                <label for="edit-submitted-kod" id="error6" class="error" style="display: none;">заполните, пожалуйста</label>
-                            </div>
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-institutes">
                                 <label for="edit-submitted-institutes">Выберите институт <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <select name="institutes[]" id="edit-submitted-institute">
+                                <select name="institutes[]" id="edit-submitted-institute" class="form-text required">
                                     <option selected="selected" disabled>Выберите институт</option>
                                     <?php
-                                    while ($fruit_name = current($array["institute"])) {
+                                    while ($institute = current($array["institute"])) {
                                         echo '<option>'.htmlspecialchars(key($array["institute"])).'</option>';
                                         next($array["institute"]);
                                     }
                                     ?>
                                 </select>
                                 <label for="edit-submitted-institutes" id="error7" class="error" style="display: none;">выберите, пожалуйста</label>
+                            </div>
+                            <div class="form-item webform-component webform-component-textfield" id="webform-component-kod">
+                                <label for="edit-submitted-kod">Выберите код направления <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
+                                <select id="edit-submitted-kod" name="submittedkod" class="form-text required"\>
+                                    <option selected="selected" disabled>Выберите код направления</option>
+                                    <?php
+                                    while ($institutes = current($array["institute"])) {
+                                        while ($institute = current($institutes[key($array["institutes"])])){
+                                            echo '<option>'.htmlspecialchars(key($array["institute"]))." ".htmlspecialchars($array["institute"]).'</option>';
+                                            next($institutes[key($array["institutes"])]);
+                                        }
+                                        next($array["institute"]);
+                                    }
+                                    ?>
+                                </select>
+                                <label for="edit-submitted-kod" id="error6" class="error" style="display: none;">заполните, пожалуйста</label>
                             </div>
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-pages">
                                 <label for="edit-submitted-pages">К-во страниц <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
