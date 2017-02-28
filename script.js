@@ -223,11 +223,16 @@ $(document).ready(function() {
             method: 'post',
             url: 'formcheck.php',
             data: {
-                topic: topic,
+                title: title,
                 submittedfio: submittedfio,
+                submittedyear: submittedyear,
+                submittedVKR: submittedVKR,
+                submittedstudCurator: submittedstudCurator,
+                submittedstudKod: submittedstudKod,
+                submittedstudInstitute: submittedstudInstitute,
+                submittedstudPages: submittedstudPages,
                 submittedvash_email: submittedvash_email,
-                submittedpn: submittedpn,
-                submittedldn: submittedldn
+                submittedPDF: submittedPDF
             },
             cache: false
         }).done(function (data) {
