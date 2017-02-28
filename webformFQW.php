@@ -72,6 +72,7 @@ $array = require_once('config.php');
                                         echo '<option>'.htmlspecialchars(key($array["institute"])).'</option>';
                                         next($array["institute"]);
                                     }
+                                    reset($array["institute"]);
                                     ?>
                                 </select>
                                 <label for="edit-submitted-institutes" id="error7" class="error" style="display: none;">выберите, пожалуйста</label>
@@ -82,9 +83,9 @@ $array = require_once('config.php');
                                     <option selected="selected" disabled>Выберите код направления</option>
                                     <?php
                                     while ($institutes = current($array["institute"])) {
-                                        while ($institute = current($institutes[key($array["institutes"])])){
-                                            echo '<option>'.htmlspecialchars(key($array["institute"]))." ".htmlspecialchars($array["institute"]).'</option>';
-                                            next($institutes[key($array["institutes"])]);
+                                        while ($institute = current($array["institute"][key($array["institute"])])){
+                                            echo '<option>'.htmlspecialchars(key($array["institute"][key($array["institute"])]))." ".htmlspecialchars($institute).'</option>';
+                                            next($array["institute"][key($array["institute"])]);
                                         }
                                         next($array["institute"]);
                                     }

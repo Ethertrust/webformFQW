@@ -3,26 +3,40 @@
  */
 
 var id = 1;
-
-$(document).ready(function(){
+$(document).ready(function() {
     //$('#webform-component-curator').clone()
-    $( "#cboxCuratorAdd" ).click(function() {
+    $("#cboxCuratorAdd").click(function () {
         $('#curators').prepend("<div class='form-item webform-component webform-component-textfield' id='webform-component-curator'>");
-        id = id+1;
+        id = id + 1;
         var textid = id.toString();
         $('#webform-component-curator').append("<input type='text' id='" + textid + "' name='submittedcurator' value='' size='60' maxlength='128' class='form-text required' style='width:213px;'>");
         $('#webform-component-curator').prepend('<label for="' + textid + '">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>');
         $('#webform-component-curator').append('<label for="' + textid + '" id="error-' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
     });
 
+    $.ajax({
+        method: 'post',
+        url: 'data.json',
+        cache: false
+    }).done(function (data) {
+        console.log(data);
+        $('#edit-submitted-institute').change(function(){
+            $('#error7').css("display", "none");
+            $("#edit-submitted-institute").css("border",  "1px solid transparent");
+            $("#edit-submitted-kod").empty();
+            $("#edit-submitted-kod").append('<option selected="selected" disabled>Выберите код направления</option>');
+            console.log(data[$("#edit-submitted-institute").val()]);
+            console.log($("#edit-submitted-institute").val());
+            for(var key in data[$("#edit-submitted-institute").val()]){
+                console.log(key.toString() + ' : ' + data[$("#edit-submitted-institute").val()][key]);
+                $("#edit-submitted-kod").append('<option >' + key.toString() + ' ' + data[$("#edit-submitted-institute").val()][key] + '</option>');
+            }
+           });
+        });
+
     $( "#edit-submitted-VKR" ).change(function() {
         $('#error4').css("display", "none");
         $("#edit-submitted-VKR").css("border",  "1px solid transparent");
-    });
-
-    $( "#edit-submitted-institute" ).change(function() {
-        $('#error7').css("display", "none");
-        $("#edit-submitted-institute").css("border",  "1px solid transparent");
     });
 
     $(document).on("modify", ":input", function(event, data)
