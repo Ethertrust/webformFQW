@@ -66,7 +66,47 @@ try {
 //        throw new RuntimeException('Failed to move uploaded file.');
 //    }
 
-    echo "mail sent";
+    $input=array();
+
+    foreach($_POST as $key => $value)
+        $input[$key] = htmlspecialchars(strip_tags($value));
+
+    if (empty($_POST['submittedtitle']))
+        $input['submittedtitle'] = '';
+    if (empty($_POST['submittedfio']))
+        $input['submittedfio'] = '';
+    if (empty($_POST['submittedyear']))
+        $input['submittedyear'] = '';
+    if (empty($_POST['VKR[]']))
+        $input['VKR[]'] = '';
+    if (empty($_POST['submittedcurator']))
+        $input['submittedcurator'] = '';
+    if (empty($_POST['institutes[]']))
+        $input['institutes[]'] = '';
+    if (empty($_POST['submittedkod']))
+        $input['submittedkod'] = '';
+    if (empty($_POST['submittedpages']))
+        $input['submittedpages'] = '';
+    if (empty($_POST['submittedvash_email']))
+        $input['submittedvash_email'] = '';
+
+    $message = 'ФИО: ' . $input['submittedfio'] . "\r\n" .
+        'email: ' . $input['submittedvash_email'] . "\r\n" .
+        'Вопрос: ' . wordwrap($input['submittedvopros'], 70, "\r\n") .
+        "\r\n";
+
+    $message = wordwrap($message, 70, "\r\n");
+    $message = str_replace("\n.", "\n..", $message);
+
+    $config = require_once('../config.php');
+
+    $from = 'From: ' . $config['mailFrom'];
+    $mailTo = $config['mailTo'];
+
+    if (mail($mailTo, $input['topic'], $message, $from))
+        echo "mail sent";
+    else
+        echo "mail wasn't sent";
 
 } catch (RuntimeException $e) {
 
