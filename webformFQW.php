@@ -26,7 +26,7 @@ $array = require_once('config.php');
             <div id="cboxContent" style="float: left; width: 710px; height: 900px;">
                 <div id="cboxLoadedContent" style="width: 710px; overflow: auto; height: 900px;">
                     <div id="webform" class="popup_form">
-                        <form action="formcheck.php" class="webform-client-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+                        <form action="formcheck.php" class="webform-client-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data" id="formdata" name="formdata">
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-title">
                                 <label for="edit-submitted-title">Заглавие работы <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
                                 <input type="text" id="edit-submitted-title" name="submittedtitle" value="" size="50" maxlength="128" class="form-text required" style="width:213px;">
@@ -106,7 +106,7 @@ $array = require_once('config.php');
                             </div>
                             <div class="form-item webform-component webform-component-email" id="webform-component-vash-pdf">
                                 <label for="edit-submitted-vash-pdf">Присоединить текст работы (формат PDF) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <input type="file" name="fileToUpload" id="edit-submitted-vash-pdf" accept=".pdf">
+                                <input type="file" name="upfile" id="edit-submitted-vash-pdf" accept=".pdf">
                                 <img id="ok2" src="images/ok.jpg" alt="ok" style="display:none;">
                                 <img id="notok2" src="images/notok.jpg" alt="error" style="display:none;">
                             </div>

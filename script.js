@@ -19,17 +19,21 @@ $(document).ready(function() {
         url: 'data.json',
         cache: false
     }).done(function (data) {
-        console.log(data);
+
         $('#edit-submitted-institute').change(function(){
             $('#error7').css("display", "none");
             $("#edit-submitted-institute").css("border",  "1px solid transparent");
             $("#edit-submitted-kod").empty();
             $("#edit-submitted-kod").append('<option selected="selected" disabled>Выберите код направления</option>');
-            console.log(data[$("#edit-submitted-institute").val()]);
-            console.log($("#edit-submitted-institute").val());
-            for(var key in data[$("#edit-submitted-institute").val()]){
-                console.log(key.toString() + ' : ' + data[$("#edit-submitted-institute").val()][key]);
-                $("#edit-submitted-kod").append('<option >' + key.toString() + ' ' + data[$("#edit-submitted-institute").val()][key] + '</option>');
+
+            for(var key in data){
+                console.log(key);
+            }
+            const instituteName = $("#edit-submitted-institute").val();
+            const translit = data[instituteName];
+
+            for(var key in translit){
+                $("#edit-submitted-kod").append('<option >' + key.toString() + ' ' + translit[key] + '</option>');
             }
            });
         });
@@ -130,8 +134,9 @@ $(document).ready(function() {
         }
     });
 
+    var form = document.forms.namedItem("formdata");
     $('.webform-client-form').on('submit', function(event) {
-        event.preventDefault();
+
         var title = $.trim($('#edit-submitted-title').val());
         var submittedfio = $.trim($('#edit-submitted-fio').val());
         var submittedyear = $.trim($('#edit-submitted-year').val());
@@ -211,45 +216,48 @@ $(document).ready(function() {
             allright = false;
         }
 
-        if (!allright)
+        if (!allright) {
+            event.preventDefault();
             return;
+        }
+
 
         $('.webform-client-form').toggle();
         $('.close_popup').toggle();
         $('#webform').append($('<span id="sending1" style="vertical-align:middle;">').html("Письмо отправляется..."));
         $('#webform').append($('<img id="sending" src="images/sending.gif" style="vertical-align:middle;" alt="error" style="display:none;">'));
 
-        $.ajax({
-            method: 'post',
-            url: 'formcheck.php',
-            data: {
-                title: title,
-                submittedfio: submittedfio,
-                submittedyear: submittedyear,
-                submittedVKR: submittedVKR,
-                submittedstudCurator: submittedstudCurator,
-                submittedstudKod: submittedstudKod,
-                submittedstudInstitute: submittedstudInstitute,
-                submittedstudPages: submittedstudPages,
-                submittedvash_email: submittedvash_email,
-                submittedPDF: submittedPDF
-            },
-            cache: false
-        }).done(function (data) {
-            console.log(data);
-            $('#sending1').toggle();
-            $('#sending').toggle();
-            if (data == "mail sent")
-                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
-            else
-                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
-            $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
-            $('#close_popup').on("click", function(event)
-            {
-                event.preventDefault();
-                history.back();
-            });
-        });
+        //var formData = new FormData(document.getElementsByName("upfile"));
+        //for (var value in formData.values()) {
+        //    console.log(value);
+        //}
+        //
+        //var data = new FormData();
+        //
+        //
+        //$.ajax({
+        //    type: 'POST',
+        //    url: 'formcheck.php',
+        //    data: formData,
+        //    mimeType: "multipart/form-data",
+        //    contentType: false,
+        //    cache: false,
+        //    processData: false
+        //}).done(function (data) {
+        //    console.log(data);
+        //    $('#sending1').toggle();
+        //    $('#sending').toggle();
+        //    if (data == "mail sent")
+        //        $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
+        //    else
+        //        $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
+        //    $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
+        //    $('#close_popup').on("click", function(event)
+        //    {
+        //        event.preventDefault();
+        //        history.back();
+        //    });
+        //});
     });
  }
 )
