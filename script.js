@@ -136,7 +136,7 @@ $(document).ready(function() {
 
     var form = document.forms.namedItem("formdata");
     $('.webform-client-form').on('submit', function(event) {
-
+        event.preventDefault();
         var title = $.trim($('#edit-submitted-title').val());
         var submittedfio = $.trim($('#edit-submitted-fio').val());
         var submittedyear = $.trim($('#edit-submitted-year').val());
@@ -217,7 +217,7 @@ $(document).ready(function() {
         }
 
         if (!allright) {
-            event.preventDefault();
+
             return;
         }
 
@@ -227,37 +227,37 @@ $(document).ready(function() {
         $('#webform').append($('<span id="sending1" style="vertical-align:middle;">').html("Письмо отправляется..."));
         $('#webform').append($('<img id="sending" src="images/sending.gif" style="vertical-align:middle;" alt="error" style="display:none;">'));
 
-        //var formData = new FormData(document.getElementsByName("upfile"));
+        //var formData = new FormData(document.getElementsByName("formdata"));
         //for (var value in formData.values()) {
         //    console.log(value);
         //}
-        //
-        //var data = new FormData();
-        //
-        //
-        //$.ajax({
-        //    type: 'POST',
-        //    url: 'formcheck.php',
-        //    data: formData,
-        //    mimeType: "multipart/form-data",
-        //    contentType: false,
-        //    cache: false,
-        //    processData: false
-        //}).done(function (data) {
-        //    console.log(data);
-        //    $('#sending1').toggle();
-        //    $('#sending').toggle();
-        //    if (data == "mail sent")
-        //        $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
-        //    else
-        //        $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
-        //    $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
-        //    $('#close_popup').on("click", function(event)
-        //    {
-        //        event.preventDefault();
-        //        history.back();
-        //    });
-        //});
+
+        var data = new FormData($('form')[0]);
+
+
+        $.ajax({
+            type: 'POST',
+            url: 'formcheck.php',
+            data: data,
+            mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false
+        }).done(function (data) {
+            console.log(data);
+            $('#sending1').toggle();
+            $('#sending').toggle();
+            if (data == "mail sent")
+                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
+            else
+                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
+            $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
+            $('#close_popup').on("click", function(event)
+            {
+                event.preventDefault();
+                history.back();
+            });
+        });
     });
  }
 )

@@ -1,5 +1,5 @@
 <?php
-
+require_once('PHPMailer-master/class.phpmailer.php');
 try {
     // Undefined | Multiple Files | $_FILES Corruption Attack
     // If this request falls under any of them, treat it invalid.
@@ -97,8 +97,22 @@ try {
 
     $message = wordwrap($message, 70, "\r\n");
     $message = str_replace("\n.", "\n..", $message);
+//
+    $email = new PHPMailer();
+    $email->From      = 'you@example.com';
+    $email->FromName  = 'Your Name';
+    $email->Subject   = 'Message Subject';
+    $email->Body      = $message;
+    $email->AddAddress( 'destinationaddress@example.com' );
+    $email->AddAddress( 'destinationaddress@example.com' );
 
-    $config = require_once('../config.php');
+    $file_to_attach = 'PATH_OF_YOUR_FILE_HERE';
+
+    $email->AddAttachment( $file_to_attach , 'NameOfFile.pdf' );
+
+    $email->Send();
+//
+    $config = require_once('config.php');
 
     $from = 'From: ' . $config['mailFrom'];
     $mailTo = $config['mailTo'];
