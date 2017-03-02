@@ -9,7 +9,7 @@ $(document).ready(function() {
         $('#curators').prepend("<div class='form-item webform-component webform-component-textfield' id='webform-component-curator'>");
         id = id + 1;
         var textid = id.toString();
-        $('#webform-component-curator').append("<input type='text' id='" + textid + "' name='submittedcurator' value='' size='60' maxlength='128' class='form-text required' style='width:213px;'>");
+        $('#webform-component-curator').append('<input type="text" id="' + textid + '" name="submittedcurator' + textid +  '" value="" size="60" maxlength="128" class="form-text required" style="width:213px;">');
         $('#webform-component-curator').prepend('<label for="' + textid + '">Научный руководитель (Фамилия, Имя, Отчество - полностью) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>');
         $('#webform-component-curator').append('<label for="' + textid + '" id="error-' + id.toString() + '" class="error" style="display: none;">заполните, пожалуйста</label>');
     });
@@ -248,7 +248,7 @@ $(document).ready(function() {
             $('#sending1').toggle();
             $('#sending').toggle();
             if (data == "mail sent")
-                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено - однажды, вам ответят...")));
+                $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено, вы получите копию на указанный вами адрес...")));
             else
                 $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
             $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));

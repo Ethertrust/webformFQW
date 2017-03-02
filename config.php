@@ -1,5 +1,7 @@
 <?PHP
 return array (
+    'back_url' => 'http://lib.surgu.ru/',
+    'mailTo' => 'vkr@surgu.ru',
     'work_type' => array('Дипломная работа', 'Магистерская диссертация', 'Бакалаврская работа'),
     'institute' => array(
     'Политехнический институт' => array(

@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 $array = require_once('config.php');
+$config = require_once('config.php');
+$back = $config['back_url'];
 ?>
 <html>
 <head>
@@ -44,7 +46,7 @@ $array = require_once('config.php');
                             </div>
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-VKR">
                                 <label for="edit-submitted-VKR">Форма ВКР <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <select name="VKR[]" id="edit-submitted-VKR" class="form-text required">
+                                <select name="VKR" id="edit-submitted-VKR" class="form-text required">
                                     <option selected="selected" disabled>Форма ВКР </option>
                                     <?php
                                     while ($work_type = current($array["work_type"])) {
@@ -65,7 +67,7 @@ $array = require_once('config.php');
                             </div>
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-institutes">
                                 <label for="edit-submitted-institutes">Выберите институт <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
-                                <select name="institutes[]" id="edit-submitted-institute" class="form-text required">
+                                <select name="institutes" id="edit-submitted-institute" class="form-text required">
                                     <option selected="selected" disabled>Выберите институт</option>
                                     <?php
                                     while ($institute = current($array["institute"])) {
