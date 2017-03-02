@@ -16,8 +16,8 @@ $back = $config['back_url'];
 <body>
 <div id="cboxOverlay" style="opacity: 0.85; cursor: pointer; visibility: visible; display: block;"></div>
 <div id="colorbox" class="" role="dialog" tabindex="-1"
-     style="display: block; visibility: visible; position: absolute; width: 562px; height: 939px; top: 50%; left: 50%; margin: -507px 0 0 -281px;  opacity: 1; cursor: auto;">
-    <div id="cboxWrapper" style="text-align: left; height: 924px; width: 740px;">
+     style="display: block; visibility: visible; position: absolute; width: 562px; height: 815px; top: 50%; left: 50%; margin: -425px 0 0 -281px;  opacity: 1; cursor: auto;">
+    <div id="cboxWrapper" style="text-align: left; height: 820px; width: 740px;">
         <div>
             <div id="cboxTopLeft" style="float: left;"></div>
             <div id="cboxTopCenter" style="float: left; width: 710px;"></div>
@@ -25,8 +25,8 @@ $back = $config['back_url'];
         </div>
         <div style="clear: left;">
             <div id="cboxMiddleLeft" style="float: left; height: 539px;"></div>
-            <div id="cboxContent" style="float: left; width: 710px; height: 900px;">
-                <div id="cboxLoadedContent" style="width: 710px; overflow: auto; height: 900px;">
+            <div id="cboxContent" style="float: left; width: 710px; height: 801px;">
+                <div id="cboxLoadedContent" style="width: 710px; overflow: auto; height: 801px;">
                     <div id="webform" class="popup_form">
                         <form action="formcheck.php" class="webform-client-form" method="post" accept-charset="UTF-8" enctype="multipart/form-data" id="formdata" name="formdata">
                             <div class="form-item webform-component webform-component-textfield" id="webform-component-title">
@@ -112,7 +112,7 @@ $back = $config['back_url'];
                                 <img id="ok2" src="images/ok.jpg" alt="ok" style="display:none;">
                                 <img id="notok2" src="images/notok.jpg" alt="error" style="display:none;">
                             </div>
-                         <p><input type="submit" /></p>
+                         <p><input type="submit" value="Отправить"/></p>
                         </form>
                         <a href="<?php echo $back; ?>" class="close_popup">Я передумал</a>
                     </div>

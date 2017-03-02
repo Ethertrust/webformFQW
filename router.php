@@ -8,6 +8,6 @@ if ($requestUri == '/data.json') {
 }
 
 if ($requestUri == '/')
-    $requestUri = 'webformFQW.php';
+    $requestUri = 'index.php';
 
 include($requestUri);
