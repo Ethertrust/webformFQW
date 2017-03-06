@@ -63,6 +63,8 @@ $(document).ready(function() {
 
         if(event.target.id=="edit-submitted-vash-email")
         {
+            data.currentValue = $.trim(data.currentValue).toLowerCase();
+            document.getElementById("edit-submitted-vash-email").value = data.currentValue;
             if(valid($.trim(data.currentValue),true))
             {
                 $('#notok1').css("display", "none");
