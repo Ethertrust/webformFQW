@@ -259,12 +259,12 @@ $(document).ready(function() {
                 $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Письмо отправлено, вы получите копию на указанный вами адрес...")));
             else
                 $('#webform').append($('<div style="height:394px; width: 562px; font-size:18px; color: #0000FF; overflow: visible;" class="ensuarence" >').append($('<span style="vertical-align:middle;">').html("Увы, возникла ошибка, и письмо пропало - возможно, стоит попробовать позже...")));
-            $('.ensuarence').append($('<a id="close_popup" class="close_popup" style="float: none;">').attr('href',"http://lib.surgu.ru/").html("Вернуться"));
-            $('#close_popup').on("click", function(event)
-            {
-                event.preventDefault();
-                history.back();
-            });
+            $('.ensuarence').append($('<a id="close_popup2" class="close_popup" style="float: none;">').attr('href',"http://www.lib.surgu.ru/vkrform/").html("Вернуться"));
+            //$('#close_popup2').on("click", function(event)
+            //{
+            //    event.preventDefault();
+            //    history.back();
+            //});
         });
     });
  }
