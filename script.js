@@ -38,6 +38,12 @@ $(document).ready(function() {
            });
         });
 
+    $('#close_popup').on("click", function(event)
+    {
+        event.preventDefault();
+        history.back();
+    });
+
     $( "#edit-submitted-VKR" ).change(function() {
         $('#error4').css("display", "none");
         $("#edit-submitted-VKR").css("border",  "1px solid transparent");

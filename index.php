@@ -106,16 +106,16 @@ $back = $config['back_url'];
                                 <img id="ok1" src="images/ok.jpg" alt="ok" style="display:none;">
                                 <img id="notok1" src="images/notok.jpg" alt="error" style="display:none;">
                             </div>
-                            <input type="hidden" name="MAX_FILE_SIZE" value="40000000" />
                             <div class="form-item webform-component webform-component-email" id="webform-component-vash-pdf">
                                 <label for="edit-submitted-vash-pdf">Присоединить текст работы (формат PDF) <span class="form-required" title="Это поле обязательно для заполнения.">*</span></label>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="40000000" />
                                 <input type="file" name="upfile" id="edit-submitted-vash-pdf" accept=".pdf">
                                 <img id="ok2" src="images/ok.jpg" alt="ok" style="display:none;">
                                 <img id="notok2" src="images/notok.jpg" alt="error" style="display:none;">
                             </div>
                          <p><input type="submit" value="Отправить"/></p>
                         </form>
-                        <a href="<?php echo $back; ?>" class="close_popup">Я передумал</a>
+                        <a href="<?php echo $back; ?>" class="close_popup" id="close_popup">Я передумал</a>
                     </div>
                 </div>
                 <div id="cboxTitle" style="float: left; display: none;"></div>
